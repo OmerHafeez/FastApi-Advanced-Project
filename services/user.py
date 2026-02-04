@@ -41,7 +41,7 @@ class UserService:
         
         # Add to database
         db.add(db_user)
-        await db.commit()
+        await db.commit()   #Async ke liye await lagana zaroori hai, warna event loop block ho sakta hai
         await db.refresh(db_user)  # Get the updated object with ID
         
         return db_user
