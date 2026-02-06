@@ -17,16 +17,13 @@ class Settings:
     DEBUG: bool = os.getenv("DEBUG", "False").lower() == "true"
     
     # Database
-    DATABASE_URL: str = os.getenv(
-        "DATABASE_URL", 
-        "sqlite+aiosqlite:///./users.db"
-    )
+    DATABASE_URL: str = os.getenv("DATABASE_URL")
     
     # JWT Authentication
-    SECRET_KEY: str = os.getenv(
-        "SECRET_KEY", 
-        "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-    )
+    SECRET_KEY: str = os.getenv("SECRET_KEY")  # remove default or keep placeholder
+    if not SECRET_KEY:
+        raise ValueError("SECRET_KEY is not set in environment variables")
+    
     ALGORITHM: str = os.getenv("ALGORITHM", "HS256")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(
         os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")
